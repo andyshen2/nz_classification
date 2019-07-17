@@ -1,19 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
     aaptOptions {
         noCompress "tflite"
         noCompress "lite"
     }
-=======
->>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
-=======
->>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
->>>>>>> Stashed changes
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
@@ -31,7 +22,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -39,14 +29,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
-=======
->>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
-=======
->>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
->>>>>>> Stashed changes
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+
 }
