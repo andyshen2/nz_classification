@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnTakePic"
+        android:text="Take Picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:scaleType="centerInside" />
+    <ListView
+        android:id="@+id/predictions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
+=======
+=======
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+>>>>>>> Stashed changes
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,4 +46,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< Updated upstream
 </androidx.constraintlayout.widget.ConstraintLayout>
+=======
+<<<<<<< HEAD
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+=======
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+>>>>>>> Stashed changes
