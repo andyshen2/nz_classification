@@ -5,11 +5,31 @@
     android:gravity="center"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnTakePic"
-        android:text="Take Picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/cameraButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/camera"
+       />
+    <ImageButton
+        android:id="@+id/fileButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/file" />
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btnTakePic"-->
+        <!--android:text="Take Picture"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+    <!--<Button-->
+        <!--android:id="@+id/btnSelectPic"-->
+        <!--android:text="Choose Picture From Gallery"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,32 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar1"-->
+        <!--style="?android:attr/progressBarStyleLarge"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="131dp"-->
+        <!--android:indeterminate="true" />-->
+
 
 </LinearLayout>
 
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".MainActivity">-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Hello World!"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--<<<<<<< Updated upstream-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--=======-->
-<!--<<<<<<< HEAD-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--&gt;>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0-->
-<!--=======-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--&gt;>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0-->
-<!--&gt;>>>>>> Stashed changes-->

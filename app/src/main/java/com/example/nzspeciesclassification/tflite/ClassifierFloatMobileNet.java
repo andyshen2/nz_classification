@@ -73,7 +73,6 @@ public class ClassifierFloatMobileNet extends Classifier {
 
   @Override
   protected void addPixelValue(int pixelValue) {
-    System.out.println("HERERERERERERERERERERERRERER");
     imgData.putFloat((((pixelValue >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
     imgData.putFloat((((pixelValue >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
     imgData.putFloat(((pixelValue & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
