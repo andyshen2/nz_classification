@@ -2,3 +2,5 @@
 This was a project that was completed in my honours year of university. I create a Android application which could identify images of different living species. The applicaiton contains a neural network that was trained on images taken in New Zealand.
 
 You can read more about this project [here](http://andyshen.co.nz/app)
+
+The APK file can be found [here](https://drive.google.com/file/d/1EUmksDPIky-G2xfEkj9LVOHvFUnsNSba/view?usp=sharing)
