@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nzspeciesclassification">
+<<<<<<< Updated upstream
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,24 +10,72 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <application
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+
+
+=======
+
+    <application
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+=======
+
+    <application
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+>>>>>>> Stashed changes
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< Updated upstream
         <activity android:name=".ResultsActivity"></activity>
 
+=======
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN"/>
+               <category android:name="android.intent.category.LAUNCHER"/>
+           </intent-filter>
+
+        </activity>
+>>>>>>> Stashed changes
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.nzspeciesclassification.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+<<<<<<< Updated upstream
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
+=======
+                <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+
+        </provider>
+
+=======
+=======
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +83,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+=======
+>>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

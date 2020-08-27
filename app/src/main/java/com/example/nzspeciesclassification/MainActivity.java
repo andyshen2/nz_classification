@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.StateSet;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import com.example.nzspeciesclassification.tflite.Classifier.Device;
 import com.example.nzspeciesclassification.tflite.Classifier.Model;
 import com.example.nzspeciesclassification.tflite.Classifier.Recognition;
 import static android.os.Environment.getExternalStoragePublicDirectory;
+import static android.os.Environment.getExternalStorageDirectory;
 
 public class MainActivity extends AppCompatActivity {
     private static final Logger LOGGER = new Logger();
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -58,26 +61,43 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(Build.VERSION.SDK_INT >= 23){
+            System.out.println("permissions");
+
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
 
+
         }
+
 
         fileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pickFromGallery();
+                try{
+                    pickFromGallery();
+
+                }catch (Exception e){
+
+                }
             }
         });
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dispatchPictureTakenAction();
+                try{
+                    dispatchPictureTakenAction();
+
+                }catch (Exception e){
+
+                }
             }
         });
 
 
         imageView = findViewById(R.id.imageView);
     }
+
+
+
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -132,15 +152,26 @@ public class MainActivity extends AppCompatActivity {
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                         final List<Recognition> results = classifier.recognizeImage(scaled.copy(Bitmap.Config.ARGB_8888,false));
+                        System.out.print(results + " RESULTS");
                         ArrayAdapter adapter = new ArrayAdapter<Recognition>(this,
                                 android.R.layout.simple_list_item_1,
                                 results);
+                        int listLength = results.size();
+
+                        for( int i = 0 ; i < listLength; i++){
+                            String[]splitNames = results.get(i).toString().split("_");
+                            System.out.println(splitNames[0]);
+
+//                            System.out.println(results.get(i));
+
+                        }
+
                         predictions = findViewById(R.id.predictions);
                         predictions.setAdapter(adapter);
 
                     }
 //                    ByteArrayOutputStream _bs = new ByteArrayOutputStream();
-//                    rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 40, _bs);
+//                    rotatedBitmap.compress(Bitmap.CompressFormat.PNG, 60, _bs);
 //                    Intent k = new Intent(MainActivity.this, ResultsActivity.class);
 //                    k.putExtra("image", _bs.toByteArray());
 //                    System.out.println("NOOO GOOO???");
@@ -148,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }catch(Exception e){
+                    System.err.println(e);
 
                 }
             }else if (requestCode == PICK_IMAGE){
@@ -181,22 +213,39 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Will have a button that says classify and will trigger this method
 
     }
-    private void pickFromGallery(){
+    private void pickFromGallery() throws IOException{
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         File photoFile = null;
 
-        photoFile = createPhotoFile();
+        photoFile = createImageFile();
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
+    String currentPhotoPath;
 
-    private void dispatchPictureTakenAction() {
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+    private void dispatchPictureTakenAction() throws IOException{
         Intent takePic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        System.out.println("hrererere");
         if(takePic.resolveActivity(getPackageManager()) != null){
             File photoFile = null;
 
-            photoFile = createPhotoFile();
+            photoFile = createImageFile();
             if(photoFile != null){
                 pathToFile = photoFile.getAbsolutePath();
                 Uri photoURI = FileProvider.getUriForFile(MainActivity.this, "com.example.nzspeciesclassification.fileprovider", photoFile);
@@ -206,17 +255,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private File createPhotoFile() {
-        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = null;
-        try {
-            image = File.createTempFile(name, ".jpg", storageDir);
-        } catch (IOException e) {
-            Log.d("mylog", "Error: " + e.toString());
-        }
-        return image;
-
-
-    }
+//    private File createPhotoFile() {
+//        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//        File image = null;
+//        try {
+//            image = File.createTempFile(name, ".jpg", storageDir);
+//        } catch (IOException e) {
+//            Log.d("mylog", "Error: " + e.toString());
+//        }
+//        return image;
+//
+//
+//    }
 }
