@@ -18,16 +18,22 @@
         </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>

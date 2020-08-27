@@ -1,6 +1,10 @@
 *.iml
 .gradle
+<<<<<<< HEAD
 /app/release
+=======
+app/release 
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
 /local.properties
 /.idea/caches
 /.idea/libraries

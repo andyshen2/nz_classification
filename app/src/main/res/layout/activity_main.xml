@@ -12,7 +12,10 @@
     android:gravity="center"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
     <ImageButton
         android:id="@+id/cameraButton"
         android:layout_width="50dp"
@@ -38,6 +41,7 @@
         <!--android:text="Choose Picture From Gallery"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content" />-->
+<<<<<<< HEAD
 =======
     <Button
         android:id="@+id/btnTakePic"
@@ -45,6 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,7 +62,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
     <!--<ProgressBar-->
         <!--android:id="@+id/progressBar1"-->
         <!--style="?android:attr/progressBarStyleLarge"-->
@@ -67,6 +76,7 @@
 
 </LinearLayout>
 
+<<<<<<< HEAD
 =======
 
 </LinearLayout>
@@ -101,3 +111,5 @@
 >>>>>>> f48ac70ae1d2c4e810b93b9399131e033cbd65c0
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+>>>>>>> b3944f6ec536ae14a2c5254d84ba384a3d4ebda5
