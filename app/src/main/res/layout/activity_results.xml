@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical" android:layout_width="match_parent"
-android:gravity="center"
-android:layout_height="match_parent">
-
-
-<ImageView
-    android:id="@+id/imageView"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
-    android:scaleType="centerInside" />
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/cameraButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/camera" />
+
+        <ImageButton
+            android:id="@+id/fileButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="@drawable/file" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="80dp"
+
+            android:text="Take Photo" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+
+            android:text="From Gallery" />
+    </TableRow>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="326dp"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4CAF50"
+        android:gravity="center_vertical"
+        android:text="This could be a..."
+
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/predictions"
+        android:layout_width="match_parent"
+        android:layout_height="195dp" />
+
+
+
+    <!--<ProgressBar-->
+    <!--android:id="@+id/progressBar1"-->
+    <!--style="?android:attr/progressBarStyleLarge"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="131dp"-->
+    <!--android:indeterminate="true" />-->
+
 
 </LinearLayout>
+
