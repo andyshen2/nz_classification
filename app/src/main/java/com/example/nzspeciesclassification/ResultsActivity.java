@@ -27,6 +27,7 @@ import com.example.nzspeciesclassification.env.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -168,6 +169,26 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
     }
+    public static Bitmap changeOrientation(int orientation, Bitmap bitmap){
+
+        switch(orientation) {
+
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotateImage(bitmap, 90);
+
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotateImage(bitmap, 180);
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotateImage(bitmap, 270);
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                return bitmap;
+        }
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -181,32 +202,13 @@ public class ResultsActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
-                File file = new File(pathToFile);
                 Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
                 try {
                     ExifInterface ei = new ExifInterface(pathToFile);
                     int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                             ExifInterface.ORIENTATION_UNDEFINED);
 
-                    Bitmap rotatedBitmap = null;
-                    switch(orientation) {
-
-                        case ExifInterface.ORIENTATION_ROTATE_90:
-                            rotatedBitmap = rotateImage(bitmap, 90);
-                            break;
-
-                        case ExifInterface.ORIENTATION_ROTATE_180:
-                            rotatedBitmap = rotateImage(bitmap, 180);
-                            break;
-
-                        case ExifInterface.ORIENTATION_ROTATE_270:
-                            rotatedBitmap = rotateImage(bitmap, 270);
-                            break;
-
-                        case ExifInterface.ORIENTATION_NORMAL:
-                        default:
-                            rotatedBitmap = bitmap;
-                    }
+                    Bitmap rotatedBitmap = changeOrientation(orientation, bitmap);
 
                     imageView.setImageBitmap(rotatedBitmap);
 
@@ -218,11 +220,18 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             }else if (requestCode == PICK_IMAGE){
                 Uri uri = data.getData();
-
                 try {
+
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    InputStream inputStream = getContentResolver().openInputStream(uri);
+                    ExifInterface ei = new ExifInterface(inputStream);
+                    int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                            ExifInterface.ORIENTATION_UNDEFINED);
+
+                    Bitmap rotatedBitmap = changeOrientation(orientation, bitmap);
+
                     ImageView imageView = findViewById(R.id.imageView);
-                    imageView.setImageBitmap(bitmap);
+                    imageView.setImageBitmap(rotatedBitmap);
                     Bitmap scaled = Bitmap.createScaledBitmap(bitmap, classifier.getImageSizeX(),classifier.getImageSizeY(), false);
                     classifyImage(scaled);
                 } catch (IOException e) {
