@@ -54,10 +54,6 @@ public class ResultsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_results);
-
-
-        Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
         Bundle bundle = getIntent().getExtras();
         boolean mainScreen = bundle.getBoolean("mainScreen");
         if(mainScreen) {
@@ -77,7 +73,6 @@ public class ResultsActivity extends AppCompatActivity {
 
         cameraButton = findViewById(R.id.cameraButton);
         fileButton = findViewById(R.id.fileButton);
-
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,9 +95,7 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             }
         });
-
         imageView = findViewById(R.id.imageView);
-
     }
     String currentPhotoPath;
 
@@ -116,24 +109,22 @@ public class ResultsActivity extends AppCompatActivity {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
     private void pickFromGallery() throws IOException{
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-
         createImageFile();
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
+
     private void dispatchPictureTakenAction() throws IOException {
         Intent takePic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         if(takePic.resolveActivity(getPackageManager()) != null){
             File photoFile = null;
-
             photoFile = createImageFile();
             if(photoFile != null){
                 pathToFile = photoFile.getAbsolutePath();
@@ -143,7 +134,8 @@ public class ResultsActivity extends AppCompatActivity {
             }
         }
     }
-    public static Bitmap rotateImage(Bitmap source, float angle) {
+
+    private static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
@@ -158,7 +150,7 @@ public class ResultsActivity extends AppCompatActivity {
             for( int i = 0 ; i < listLength; i++){
                 String[]splitNames = results.get(i).toString().split("_");
                 String [] species = splitNames[0].split(" ", 2);
-                String [] confidence = splitNames[1].split(" ");
+                String [] confidence = splitNames[splitNames.length-1].split(" ");
                 speciesName.add(species[1] + " " + confidence[confidence.length-1]);
             }
             ArrayAdapter adapter = new ArrayAdapter<String>(this,
@@ -167,28 +159,22 @@ public class ResultsActivity extends AppCompatActivity {
             predictions = findViewById(R.id.predictions);
             predictions.setAdapter(adapter);
         }
-
     }
+
     public static Bitmap changeOrientation(int orientation, Bitmap bitmap){
-
         switch(orientation) {
-
             case ExifInterface.ORIENTATION_ROTATE_90:
                 return rotateImage(bitmap, 90);
-
-
             case ExifInterface.ORIENTATION_ROTATE_180:
                 return rotateImage(bitmap, 180);
-
             case ExifInterface.ORIENTATION_ROTATE_270:
                 return rotateImage(bitmap, 270);
-
             case ExifInterface.ORIENTATION_NORMAL:
             default:
                 return bitmap;
         }
-
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -199,7 +185,6 @@ public class ResultsActivity extends AppCompatActivity {
         } catch (IOException e) {
             LOGGER.e(e, "Failed to create classifier.");
         }
-
         if(resultCode == RESULT_OK){
             if(requestCode == 1){
                 Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
@@ -207,29 +192,22 @@ public class ResultsActivity extends AppCompatActivity {
                     ExifInterface ei = new ExifInterface(pathToFile);
                     int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                             ExifInterface.ORIENTATION_UNDEFINED);
-
                     Bitmap rotatedBitmap = changeOrientation(orientation, bitmap);
-
                     imageView.setImageBitmap(rotatedBitmap);
-
                     Bitmap scaled = Bitmap.createScaledBitmap(bitmap, classifier.getImageSizeX(),classifier.getImageSizeY(), false);
                     classifyImage(scaled);
-
                 }catch(Exception e){
                     System.err.println(e);
                 }
             }else if (requestCode == PICK_IMAGE){
                 Uri uri = data.getData();
                 try {
-
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     InputStream inputStream = getContentResolver().openInputStream(uri);
                     ExifInterface ei = new ExifInterface(inputStream);
                     int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                             ExifInterface.ORIENTATION_UNDEFINED);
-
                     Bitmap rotatedBitmap = changeOrientation(orientation, bitmap);
-
                     ImageView imageView = findViewById(R.id.imageView);
                     imageView.setImageBitmap(rotatedBitmap);
                     Bitmap scaled = Bitmap.createScaledBitmap(bitmap, classifier.getImageSizeX(),classifier.getImageSizeY(), false);
@@ -237,10 +215,7 @@ public class ResultsActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }
     }
-    
 }

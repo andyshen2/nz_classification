@@ -14,28 +14,19 @@ public class MainActivity extends AppCompatActivity {
     ImageButton fileButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
         setContentView(R.layout.activity_main);
-
         cameraButton = findViewById(R.id.cameraButton);
         fileButton = findViewById(R.id.fileButton);
-
-
         if(Build.VERSION.SDK_INT >= 23){
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
         }
-
         fileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
                 boolean mainScreen = false;
                 intent.putExtra("mainScreen", mainScreen);
@@ -52,9 +43,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
-
-
 }
