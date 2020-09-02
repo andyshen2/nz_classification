@@ -177,7 +177,6 @@ public abstract class Classifier {
 
   /** Initializes a {@code Classifier}. */
   protected Classifier(Activity activity, Device device, int numThreads) throws IOException {
-    System.out.println(activity.toString() + " this classifier");
     tfliteModel = loadModelFile(activity);
     switch (device) {
       case NNAPI:
@@ -200,7 +199,6 @@ public abstract class Classifier {
                 * getImageSizeY()
                 * DIM_PIXEL_SIZE
                 * getNumBytesPerChannel());
-    System.out.println(imgData + " IMG DATATATAT");
     imgData.order(ByteOrder.nativeOrder());
     LOGGER.d("Created a Tensorflow Lite Image Classifier.");
   }
@@ -220,11 +218,7 @@ public abstract class Classifier {
 
   /** Memory-map the model file in Assets. */
   private MappedByteBuffer loadModelFile(Activity activity) throws IOException {
-    System.out.println(getModelPath() + " model path");
     AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(getModelPath());
-//    AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(getModelPath());
-
-    System.out.println(fileDescriptor + "  hererere");
     FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
     FileChannel fileChannel = inputStream.getChannel();
     long startOffset = fileDescriptor.getStartOffset();
